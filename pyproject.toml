@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "ukmoney-rag"
 version = "0.1.0"
-description = "Grounded Q&A over GOV.UK and MoneyHelper guidance: ingestion, retrieval, evaluation."
+description = "Ingestion and retrieval pipeline over GOV.UK money guidance."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

@@ -1,13 +1,14 @@
 # uk-money-rag
 
-Grounded question answering over UK public money guidance (GOV.UK, MoneyHelper), built as a
-production-style pipeline: typed, tested, reproducible, and evaluated.
+Grounded question answering over UK public money guidance (GOV.UK), built as a
+production-style pipeline: typed, tested, and reproducible.
 
-> **Status: Week 1 of 5.** Ingestion plus a deployed keyword-search (BM25) baseline. Dense
-> retrieval, generation and evaluation are not built yet; see the [roadmap](#roadmap).
+> **Status: Week 1 of 5.** Ingestion plus a keyword-search (BM25) baseline, with a container
+> image and deploy workflow ready but not yet deployed. Dense retrieval, generation and
+> evaluation are not built yet; see the [roadmap](#roadmap). Data: GOV.UK only for now.
 > This README only claims what exists.
 
-**Live demo:** `<your Cloud Run URL>/docs` (deployed from `main` via GitHub Actions, see
+**Live demo:** coming after the first Cloud Run deploy (runbook:
 [docs/DEPLOY.md](docs/DEPLOY.md)). Not affiliated with or endorsed by the UK government; not
 financial advice.
 

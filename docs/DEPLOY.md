@@ -1,6 +1,7 @@
 # Deploying to Google Cloud Run
 
-Every push to `main` runs CI, rebuilds the corpus from GOV.UK, builds an image tagged with the
+The **deploy** workflow (run manually from the Actions tab; the `push` trigger in
+`deploy.yml` is commented out) runs CI, rebuilds the corpus from GOV.UK, builds an image tagged with the
 commit SHA, deploys it to Cloud Run (London, `europe-west2`), and smoke-tests the live URL.
 GitHub authenticates to Google with **Workload Identity Federation**: no service-account keys
 exist anywhere, so there is nothing to leak.

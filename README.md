@@ -3,14 +3,22 @@
 Grounded question answering over UK public money guidance (GOV.UK), built as a
 production-style pipeline: typed, tested, and reproducible.
 
-> **Status: Week 1 of 5.** Ingestion plus a keyword-search (BM25) baseline, with a container
-> image and deploy workflow ready but not yet deployed. Dense retrieval, generation and
+> **Status: Week 1 of 5.** Ingestion plus a keyword-search (BM25) baseline, deployed on
+> Cloud Run with CI/CD. Dense retrieval, generation and
 > evaluation are not built yet; see the [roadmap](#roadmap). Data: GOV.UK only for now.
 > This README only claims what exists.
 
-**Live demo:** coming after the first Cloud Run deploy (runbook:
-[docs/DEPLOY.md](docs/DEPLOY.md)). Not affiliated with or endorsed by the UK government; not
+**Live demo:** https://ukmoney-rag-dij62htumq-nw.a.run.app/docs (Google Cloud Run, London).
+It runs on free-trial credit **until about 2 January 2027**, after which the service will be
+shut down; the screenshots below show it working. Runbook: [docs/DEPLOY.md](docs/DEPLOY.md).
+Not affiliated with or endorsed by the UK government; not
 financial advice.
+
+![Swagger UI overview: /health and /search endpoints](docs/img/swagger-overview.png)
+
+![A /search response: 200 with GOV.UK excerpts and licence metadata](docs/img/search-response.png)
+
+*Screenshots taken 4 October 2026.*
 
 ## Quickstart
 

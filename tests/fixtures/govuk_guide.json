@@ -1,0 +1,27 @@
+{
+  "base_path": "/sample-guide",
+  "title": "Sample benefit guide",
+  "description": "A synthetic guide shaped like a GOV.UK Content API response.",
+  "schema_name": "guide",
+  "document_type": "guide",
+  "public_updated_at": "2015-03-17T18:23:25+00:00",
+  "withdrawn_notice": {},
+  "details": {
+    "change_history": [
+      {"note": "Weekly rate updated", "public_timestamp": "2026-04-05T23:01:01Z"}
+    ],
+    "parts": [
+      {
+        "slug": "overview",
+        "title": "Overview",
+        "body": "<p>This benefit helps people on a low income with everyday living costs. You may be able to claim if you are over the qualifying age and live in the UK.</p>\n<p>You can claim online, by phone or by post. It usually takes a few weeks for your first payment to arrive, so plan ahead.</p>"
+      },
+      {
+        "slug": "how-much-you-get",
+        "title": "How much you get",
+        "body": "<h2>Weekly rates</h2>\n<p>The full weekly rate is <span class=\"content-block\">&pound;184.90</span> and it is reviewed every April.</p>\n<ul><li>Your payment can be lower if you have gaps in your record.</li><li>You can check your record online.</li></ul>\n<table><thead><tr><th>Situation</th><th>Weekly amount</th></tr></thead><tbody><tr><td>Single</td><td>&pound;100.00</td></tr><tr><td>Couple</td><td>&pound;150.00</td></tr></tbody></table>\n<!-- editorial comment that must not leak into text -->"
+      },
+      {"slug": "empty-part", "title": "Empty part", "body": ""}
+    ]
+  }
+}

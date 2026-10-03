@@ -1,0 +1,15 @@
+# Only what the image needs goes in the build context.
+.git
+.github
+.venv
+**/__pycache__
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.hypothesis
+.coverage
+htmlcov
+tests
+docs
+data/raw
+*.egg-info

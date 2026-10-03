@@ -1,0 +1,29 @@
+# Install once with `make install`; hooks then run on every commit.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: ["--maxkb=500"]   # data/ is gitignored; this catches accidents
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.9   # keep in step with the ruff version in pyproject dev extras
+    hooks:
+      - id: ruff-check
+        args: ["--fix"]
+      - id: ruff-format
+
+  # Local hook: mypy needs the project's installed deps, so run it from the venv.
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy --strict
+        entry: .venv/bin/mypy
+        language: system
+        types: [python]
+        pass_filenames: false

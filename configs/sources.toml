@@ -1,0 +1,34 @@
+# Corpus definition. Adding a page = adding a block here (no code changes).
+# kind = "govuk_api": fetched via https://www.gov.uk/api/content/<path> (JSON, OGL v3.0)
+# kind = "html":      fetched as HTML, robots.txt respected, parsed generically
+#                     (supported and tested; no HTML sources in the corpus yet)
+
+[[source]]
+name = "govuk-new-state-pension"
+kind = "govuk_api"
+url = "https://www.gov.uk/new-state-pension"
+licence = "OGL-v3.0"
+
+[[source]]
+name = "govuk-universal-credit"
+kind = "govuk_api"
+url = "https://www.gov.uk/universal-credit"
+licence = "OGL-v3.0"
+
+[[source]]
+name = "govuk-pension-credit"
+kind = "govuk_api"
+url = "https://www.gov.uk/pension-credit"
+licence = "OGL-v3.0"
+
+[[source]]
+name = "govuk-income-tax-rates"
+kind = "govuk_api"
+url = "https://www.gov.uk/income-tax-rates"
+licence = "OGL-v3.0"
+
+[[source]]
+name = "govuk-national-insurance"
+kind = "govuk_api"
+url = "https://www.gov.uk/national-insurance"
+licence = "OGL-v3.0"

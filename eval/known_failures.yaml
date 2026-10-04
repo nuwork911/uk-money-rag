@@ -1,0 +1,12 @@
+# Failures observed before the eval harness exists. Each becomes a test case in Week 3.
+# Rule: don't fix what you can't measure. Log now, fix in Week 3/4 with a before/after number.
+- id: stale-previous-tax-years
+  found: 2026-10 (BM25, Week 1)
+  query: "what is the higher rate of income tax"
+  failure: "Top results include 'previous tax years' pages alongside current rates."
+  expected: "Current-year rates page ranked first; previous-years pages below it or filtered."
+  retrievers_affected: [bm25]   # check dense once the index is built; update this list
+  hypothesis: >
+    Not a lexical-vs-semantic problem: historical pages are near-duplicates of current ones, so
+    dense retrieval is likely to rank them close too. Candidate fixes: tag chunks with
+    is_historical at ingest (title/section match), then filter or demote at query time.

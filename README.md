@@ -32,7 +32,7 @@ make serve       # API on http://localhost:8080/docs  (GET /health, GET /search?
 Dependencies are pinned in `requirements.lock` (hash-checked, used by the image) and
 `requirements-dev.lock`. After editing `pyproject.toml`, run `make lock` and commit both.
 
-Requires Python 3.11+. Before running against live sites, set a real contact address in
+Requires Python 3.12+. Before running against live sites, set a real contact address in
 `USER_AGENT` (`src/ukmoney_rag/fetch.py`) or pass `--user-agent`.
 
 ## What ingestion does

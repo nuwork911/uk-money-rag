@@ -171,7 +171,7 @@ def parse_govuk(raw: str, source: Source, fetched_at: datetime) -> Document:
             if text:
                 sections.append(
                     Section(
-                        title=part["title"],
+                        title=_clean(part["title"]),
                         slug=part["slug"],
                         url=f"{base_url}/{part['slug']}",
                         text=text,
@@ -180,7 +180,9 @@ def parse_govuk(raw: str, source: Source, fetched_at: datetime) -> Document:
     elif details.get("body"):  # single-body formats (e.g. "answer")
         text = "\n\n".join(html_to_blocks(details["body"]))
         if text:
-            sections.append(Section(title=payload["title"], slug="main", url=base_url, text=text))
+            sections.append(
+                Section(title=_clean(payload["title"]), slug="main", url=base_url, text=text)
+            )
     else:
         schema = payload.get("schema_name", "unknown")
         raise ParseError(f"{source.name}: unsupported GOV.UK schema '{schema}' (no parts/body)")
@@ -190,7 +192,7 @@ def parse_govuk(raw: str, source: Source, fetched_at: datetime) -> Document:
             doc_id=source.name,
             source_name=source.name,
             url=base_url,
-            title=payload["title"],
+            title=_clean(payload["title"]),
             description=payload.get("description"),
             licence=source.licence,
             updated_at=latest_update(payload),

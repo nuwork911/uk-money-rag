@@ -90,3 +90,24 @@ def test_parse_html_rejects_near_empty_page(html_source: Source, now: datetime) 
             html_source,
             now,
         )
+
+
+def test_parse_govuk_strips_title_whitespace(govuk_source: Source, now: datetime) -> None:
+    # Real GOV.UK titles (Content API, 2026-10-05) carry stray spaces,
+    # e.g. "Debt Relief Orders " (debts guide) and " Eligibility" (/pip).
+    body = "<p>" + "word " * 200 + "</p>"
+    raw = json.dumps(
+        {
+            "title": "  Padded guide ",
+            "schema_name": "guide",
+            "details": {
+                "parts": [
+                    {"title": " Eligibility", "slug": "eligibility", "body": body},
+                    {"title": "Debt Relief Orders ", "slug": "debt-relief-orders", "body": body},
+                ]
+            },
+        }
+    )
+    doc = parse_govuk(raw, govuk_source, now)
+    assert doc.title == "Padded guide"
+    assert [s.title for s in doc.sections] == ["Eligibility", "Debt Relief Orders"]

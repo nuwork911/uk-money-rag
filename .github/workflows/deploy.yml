@@ -1,8 +1,6 @@
 name: deploy
 on:
-  # Auto-deploy on push is disabled until GCP + Workload Identity are set up (docs/DEPLOY.md).
-#   push:
-#     branches: [main]
+  # Manual only: each deploy spends trial credit, so it is a deliberate action.
   workflow_dispatch:
 
 concurrency:
@@ -20,7 +18,7 @@ env:
 
 jobs:
   ci:
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/ci.yml   # includes the offline docker smoke test
 
   deploy:
     needs: ci
@@ -29,18 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.12"
-          cache: pip
-          cache-dependency-path: requirements.lock
-
-      - name: Build corpus from GOV.UK
-        run: |
-          pip install --require-hashes -r requirements.lock && pip install --no-deps .
-          python -m ukmoney_rag.ingest --sources configs/sources.toml \
-            --user-agent "ukmoney-rag/0.1 (+https://github.com/${{ github.repository }})"
-          cat data/processed/manifest.json
+      # No ingest here: the image is built from the committed, SHA-pinned
+      # data/snapshot, so a deploy never depends on what GOV.UK serves that day.
 
       - id: auth
         uses: google-github-actions/auth@v3
@@ -73,13 +61,22 @@ jobs:
             --max-instances=2
             --concurrency=40
             --cpu=1
-            --memory=512Mi
+            --memory=1Gi
+            --cpu-boost
             --timeout=30s
 
       - name: Smoke test the live revision
+        env:
+          URL: ${{ steps.deploy.outputs.url }}
         run: |
-          curl --fail --silent --show-error --retry 5 --retry-delay 3 \
-            "${{ steps.deploy.outputs.url }}/health"
-          curl --fail --silent --show-error \
-            "${{ steps.deploy.outputs.url }}/search?q=state+pension&k=1" > /dev/null
-          echo "Live at ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
+          health=$(curl --fail --silent --show-error --retry 5 --retry-delay 3 "$URL/health")
+          echo "$health" | jq .
+          # The live revision must be the image we just built, with dense enabled.
+          echo "$health" | jq -e --arg sha "$GITHUB_SHA" '.git_sha == $sha' > /dev/null
+          echo "$health" | jq -e 'any(.retrievers[]; . == "dense")' > /dev/null
+          for mode in bm25 dense; do
+            curl --fail --silent --show-error "$URL/search?q=state+pension&k=1&mode=$mode" \
+              | jq -e '.results | length == 1' > /dev/null
+            echo "search mode=$mode OK"
+          done
+          echo "Live at $URL (git $GITHUB_SHA)" >> "$GITHUB_STEP_SUMMARY"

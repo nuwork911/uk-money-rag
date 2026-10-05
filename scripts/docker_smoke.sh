@@ -36,4 +36,12 @@ r = urllib.request.urlopen('http://127.0.0.1:8080/search?q=state+pension+age&mod
 assert r.status == 200, r.status
 print(json.dumps(json.load(r), indent=2)[:1500])
 "
+echo "== index provenance (embeddings_sha256 depends on CPU; see ADR-0002)"
+py "
+import json, os, pathlib
+root = pathlib.Path(os.environ['UKMONEY_INDEX_ROOT'])
+m = json.loads((root / (root / 'LATEST').read_text().strip() / 'manifest.json').read_text())
+cpu = next((l.split(':', 1)[1].strip() for l in open('/proc/cpuinfo') if l.startswith('model name')), 'unknown')
+print('index_id', m['index_id'], '| embeddings_sha256', m['embeddings_sha256'][:12], '| cpu', cpu)
+"
 echo "SMOKE OK (offline, --network none)"

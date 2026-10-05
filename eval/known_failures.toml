@@ -1,0 +1,49 @@
+# Failures observed before (or by) the eval harness. Rule: don't fix what you can't measure.
+# Each open failure must point at eval cases (checked by `make eval-validate`), so any fix is
+# judged by a before/after number in eval/results, not by eyeballing one query.
+# status: open | fixed | regression-test (guarded by a unit test, not a retrieval metric)
+
+[[failure]]
+id = "stale-previous-tax-years"
+found = "2026-10 (BM25, Week 1)"
+query = "what is the higher rate of income tax"
+failure = "Top results include 'previous tax years' pages alongside current rates."
+expected = "Current-year rates page ranked first; previous-years pages below it or filtered."
+hypothesis = """
+Not a lexical-vs-semantic problem: historical pages are near-duplicates of current ones, so
+dense retrieval is likely to rank them close too. Candidate fix: tag chunks is_historical at
+ingest (title/section match), then filter or demote at query time. Week 3 note: on the pinned
+snapshot BM25 also ranks Capital Gains Tax and dividend 'higher rate' chunks above both, so
+cross-document confusion may matter more than staleness. Measure before choosing a fix."""
+status = "open"
+eval_cases = ["income-tax-higher-rate"]
+
+[[failure]]
+id = "tiny-chunks"
+found = "2026-10 (corpus expansion to 49 guides, Week 2)"
+query = "how do I pay back a benefit overpayment"
+failure = """
+24 of 803 chunks are under 40 words (min 8). Two kinds: tails of split sections, and
+boilerplate repeated across guides. Week 3 finding: the original query is a corpus gap (the
+repayment process lives on gov.uk/benefit-overpayments, which is not ingested); the 12-word
+chunks are link text pointing there, and BM25 ranks them 2nd and 3rd."""
+expected = "Substantive chunks rank above one-line boilerplate on the same topic."
+hypothesis = """
+Merge sub-40-word tails into the previous chunk of the same section, and dedupe exact
+boilerplate across documents. Change the chunker only if eval shows measurable harm."""
+status = "open"
+eval_cases = ["uc-overpaid-repay", "benefit-overpayment-how-to-repay"]
+
+[[failure]]
+id = "coarse-updated-at"
+found = "2026-10 (corpus expansion, Week 2)"
+query = "how much is statutory sick pay"
+failure = """
+updated_at is years old for several guides (statutory-sick-pay 2015-03-09) although rates
+have changed since. GOV.UK guides carry no change_history, and public_updated_at only moves on
+major updates."""
+expected = "API schema describes the field as 'last major update', never 'last updated'."
+hypothesis = "Labelling issue, not ranking. fetched_at is the honest 'as of' date."
+status = "regression-test"
+eval_cases = ["ssp-weekly-amount"]
+test = "tests/test_api.py::test_updated_at_is_documented_as_major_update_only"

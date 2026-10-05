@@ -152,3 +152,11 @@ def test_root_redirects_to_docs(client: TestClient) -> None:
 def test_missing_corpus_fails_fast(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError, match="make ingest"):
         create_app(tmp_path)
+
+
+def test_updated_at_is_documented_as_major_update_only(client: TestClient) -> None:
+    """Regression test for known failure coarse-updated-at (eval/known_failures.toml)."""
+    schema = client.get("/openapi.json").json()["components"]["schemas"]["SearchResult"]
+    description = schema["properties"]["updated_at"]["description"]
+    assert "*major*" in description
+    assert "not a freshness guarantee" in description

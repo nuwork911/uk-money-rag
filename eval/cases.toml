@@ -1,0 +1,107 @@
+# Retrieval eval set. Protocol and labelling rules: eval/README.md.
+# Labels are pinned to the snapshot in eval/CORPUS_SHA256; `make eval-validate` resolves every
+# quote against it. Changing this file changes its sha256, so old results stop being comparable.
+#
+# Tag vocabulary (keep it small):
+#   topic:     benefits | tax | pensions | savings | debt | work
+#   wording:   lexical (shares key terms with the page) | paraphrase (user's own words)
+#   origin:    seed (written by looking at the corpus; may favour BM25) | blind (written first)
+#   known-failure (from eval/known_failures.toml)
+
+# --- seed cases --------------------------------------------------------------------------------
+
+[[case]]
+id = "income-tax-higher-rate"
+question = "what is the higher rate of income tax"
+tags = ["tax", "lexical", "seed", "known-failure"]
+notes = "Current-year table must beat 'previous tax years' and Capital Gains Tax 'higher rate'."
+[[case.evidence]]
+url = "https://www.gov.uk/income-tax-rates/current-rates-and-allowances"
+quote = "Higher rate | £50,271 to £125,140 | 40%"
+
+[[case]]
+id = "uc-overpaid-repay"
+question = "universal credit paid me too much, will I have to give it back"
+tags = ["benefits", "paraphrase", "seed", "known-failure"]
+notes = "The 12-word 'Find out how to repay...' link chunk on the same page is NOT relevant."
+[[case.evidence]]
+url = "https://www.gov.uk/universal-credit/changes-of-circumstances"
+quote = "You may have to repay the money if you"
+
+[[case]]
+id = "benefit-overpayment-how-to-repay"
+question = "how do I pay back a benefit overpayment"
+tags = ["benefits", "lexical", "seed", "known-failure"]
+answerable = false
+notes = """
+Corpus gap: every guide links out to gov.uk/benefit-overpayments, which is not ingested.
+Not scored for retrieval; kept for Week 4, where /ask must say it can't answer."""
+
+[[case]]
+id = "ssp-weekly-amount"
+question = "how much is statutory sick pay"
+tags = ["work", "lexical", "seed"]
+[[case.evidence]]
+url = "https://www.gov.uk/statutory-sick-pay/what-youll-get"
+quote = "you can get £123.25 a week Statutory Sick Pay"
+
+[[case]]
+id = "carer-for-parent"
+question = "I look after my disabled mum full time, can I get any money for that"
+tags = ["benefits", "paraphrase", "seed"]
+notes = "Label audit: first run had only the overview quote; the eligibility list answers too."
+[[case.evidence]]
+url = "https://www.gov.uk/carers-allowance/overview"
+quote = "if you care for someone at least 35 hours a week"
+[[case.evidence]]
+url = "https://www.gov.uk/carers-allowance/eligibility"
+quote = "you spend at least 35 hours a week caring for someone"
+
+[[case]]
+id = "give-allowance-to-spouse"
+question = "can I give my unused tax-free allowance to my wife"
+tags = ["tax", "paraphrase", "seed"]
+[[case.evidence]]
+url = "https://www.gov.uk/marriage-allowance/how-it-works"
+quote = "transfer £1,260 of your Personal Allowance"
+
+[[case]]
+id = "isa-annual-limit"
+question = "how much can I put in an ISA each year"
+tags = ["savings", "lexical", "seed"]
+notes = "Two alternative locations: either chunk answers the question."
+[[case.evidence]]
+url = "https://www.gov.uk/individual-savings-accounts/overview"
+quote = "the maximum you can save in ISAs is £20,000"
+[[case.evidence]]
+url = "https://www.gov.uk/individual-savings-accounts/how-isas-work"
+quote = "you can save up to £20,000 in one account"
+
+[[case]]
+id = "self-assessment-online-deadline"
+question = "when do I have to send my tax return online by"
+tags = ["tax", "lexical", "seed"]
+notes = "Dated quote: expect `validate` to fail on the next snapshot refresh. That is the point."
+[[case.evidence]]
+url = "https://www.gov.uk/self-assessment-tax-returns/deadlines"
+quote = "submit your online tax return by 11:59pm on 31 January 2027"
+
+[[case]]
+id = "state-pension-max-weekly"
+question = "what's the most I can get from the new state pension each week"
+tags = ["pensions", "paraphrase", "seed"]
+[[case.evidence]]
+url = "https://www.gov.uk/new-state-pension/what-youll-get"
+quote = "The full rate of new State Pension is £241.30 a week"
+
+[[case]]
+id = "ccj-dont-owe-cancel"
+question = "I got a court judgment for a debt I don't owe, can I get it removed"
+tags = ["debt", "paraphrase", "seed"]
+[[case.evidence]]
+url = "https://www.gov.uk/county-court-judgments-ccj-for-debt/cancel-the-judgment"
+quote = "you can ask the court to cancel the county court judgment"
+
+# --- blind cases (yours) -----------------------------------------------------------------------
+# Write the question first, in your own words, before opening the page. Then find the answer
+# on GOV.UK and confirm the quote with: .venv/bin/ukmoney-eval find "<quote>" --url <url>

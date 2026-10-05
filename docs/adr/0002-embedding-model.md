@@ -31,7 +31,7 @@
 | Laptop, WSL2 `.venv`                          | AMD Ryzen 5 4500U   | `3048faee2f64…`     |
 | Docker image build, same laptop               | AMD Ryzen 5 4500U   | `3048faee2f64…`     |
 | Separate Linux sandbox used to verify the code | Intel Xeon @ 2.80GHz (AVX-512) | `f8a1c636a50d…` |
-| GitHub Actions `docker` job (PR #2, Week 3)   | AMD EPYC 7763       | `3048faee2f64…`     |
+| GitHub Actions `docker` job (PR #3, Week 3)   | AMD EPYC 7763       | `3048faee2f64…`     |
 
 All four produced the same `index_id` (`ab2eb5d42c02`) from the same snapshot, with the same
 pinned model (`51f1bd0a…`) and fastembed 0.8.1. Scores differed in the 4th decimal.

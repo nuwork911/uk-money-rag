@@ -30,11 +30,19 @@
 |-----------------------------------------------|---------------------|---------------------|
 | Laptop, WSL2 `.venv`                          | AMD Ryzen 5 4500U   | `3048faee2f64…`     |
 | Docker image build, same laptop               | AMD Ryzen 5 4500U   | `3048faee2f64…`     |
-| Separate Linux sandbox used to verify the code | not recorded        | `f8a1c6…`           |
+| Separate Linux sandbox used to verify the code | Intel Xeon @ 2.80GHz (AVX-512) | `f8a1c636a50d…` |
+| GitHub Actions `docker` job (PR #2, Week 3)   | AMD EPYC 7763       | `3048faee2f64…`     |
 
-All three produced the same `index_id` (`ab2eb5d42c02`) from the same snapshot, with the same
-pinned model (`51f1bd0a…`) and fastembed 0.8.1. Scores differed in the 4th decimal; ranking was
-unchanged on the queries compared.
+All four produced the same `index_id` (`ab2eb5d42c02`) from the same snapshot, with the same
+pinned model (`51f1bd0a…`) and fastembed 0.8.1. Scores differed in the 4th decimal.
+
+**Week 3 update.** Two different AMD CPUs (Zen 2 laptop, Zen 3 CI runner) produced
+byte-identical embeddings; only the Intel machine differed. Neither AMD part has AVX-512 and
+the Intel one does, which is consistent with ONNX Runtime selecting different kernels by
+instruction set. Three machines is not proof; the cause is still not isolated. What matters
+for this project was measured with the eval harness rather than eyeballed: on the 9 seed cases,
+the laptop index (`3048faee…`) and the sandbox index (`f8a1c636…`) gave identical ranks for the
+first relevant chunk on every case (`eval/results/summary.md`, eval set `a49b63500f76`).
 
 **Interpretation.** Embedding is deterministic for a fixed machine and environment (two separate
 builds on the laptop are bit-identical). The cross-machine difference is most likely

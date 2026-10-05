@@ -2,7 +2,7 @@ PYTHON ?= python3.12
 VENV ?= .venv
 PY   := $(VENV)/bin/python
 
-.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model serve-dense
+.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model serve-dense docker-smoke
 
 help:  ## Show targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-12s %s\n", $$1, $$2}'
@@ -49,11 +49,14 @@ serve-dense:  ## Same, plus /search?mode=dense (needs `make index` first)
 
 IMAGE ?= ukmoney-rag:local
 
-docker-build:  ## Build the production image (needs `make ingest` first)
+docker-build:  ## Build the production image from data/snapshot (bakes model + dense index)
 	docker build --build-arg GIT_SHA=$$(git rev-parse --short HEAD 2>/dev/null || echo local) -t $(IMAGE) .
 
-docker-run:  ## Run the production image on :8080
+docker-run:  ## Run the production image on :8080 (Ctrl-C to stop)
 	docker run --rm -p 8080:8080 $(IMAGE)
+
+docker-smoke:  ## Offline smoke test (--network none): /health + dense /search
+	./scripts/docker_smoke.sh $(IMAGE)
 
 clean:  ## Remove caches and build artefacts (keeps data/)
 	rm -rf .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov dist build

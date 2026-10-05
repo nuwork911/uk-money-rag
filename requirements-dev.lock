@@ -16,28 +16,48 @@ certifi==2026.7.22
     # via
     #   httpcore
     #   httpx
+    #   requests
 cfgv==3.5.0
     # via pre-commit
+charset-normalizer==3.5.2
+    # via requests
 click==8.5.0
-    # via uvicorn
+    # via
+    #   huggingface-hub
+    #   uvicorn
 coverage==7.16.2
     # via pytest-cov
 distlib==0.4.3
     # via virtualenv
 fastapi==0.142.2
     # via ukmoney-rag (pyproject.toml)
+fastembed==0.8.1
+    # via ukmoney-rag (pyproject.toml)
 filelock==4.0.8
     # via
+    #   huggingface-hub
     #   python-discovery
     #   virtualenv
+flatbuffers==25.12.19
+    # via onnxruntime
+fsspec==2026.9.0
+    # via huggingface-hub
 h11==0.16.0
     # via
     #   httpcore
     #   uvicorn
+hf-xet==1.6.0
+    # via huggingface-hub
 httpcore==1.0.9
     # via httpx
 httpx==0.28.1
-    # via ukmoney-rag (pyproject.toml)
+    # via
+    #   ukmoney-rag (pyproject.toml)
+    #   huggingface-hub
+huggingface-hub==1.33.0
+    # via
+    #   fastembed
+    #   tokenizers
 hypothesis==6.168.3
     # via ukmoney-rag (pyproject.toml)
 identify==2.6.20
@@ -46,24 +66,40 @@ idna==3.20
     # via
     #   anyio
     #   httpx
+    #   requests
 iniconfig==2.3.0
     # via pytest
 librt==0.16.0
     # via mypy
+loguru==0.7.3
+    # via fastembed
+mmh3==5.3.1
+    # via fastembed
 mypy==2.3.1
     # via ukmoney-rag (pyproject.toml)
 mypy-extensions==1.1.0
     # via mypy
 nodeenv==1.11.0
     # via pre-commit
+numpy==2.5.3
+    # via
+    #   ukmoney-rag (pyproject.toml)
+    #   fastembed
+    #   onnxruntime
+onnxruntime==1.30.0
+    # via fastembed
 opentelemetry-api==1.45.0
     # via fastapi
 packaging==26.3
     # via
+    #   huggingface-hub
+    #   onnxruntime
     #   pytest
     #   virtualenv
 pathspec==1.1.1
     # via mypy
+pillow==12.3.0
+    # via fastembed
 platformdirs==4.12.2
     # via virtualenv
 pluggy==1.6.0
@@ -72,6 +108,10 @@ pluggy==1.6.0
     #   pytest-cov
 pre-commit==4.6.2
     # via ukmoney-rag (pyproject.toml)
+protobuf==7.36.2
+    # via onnxruntime
+py-rust-stemmers==0.1.8
+    # via fastembed
 pydantic==2.13.5
     # via
     #   ukmoney-rag (pyproject.toml)
@@ -89,7 +129,11 @@ pytest-cov==7.1.0
 python-discovery==1.6.1
     # via virtualenv
 pyyaml==6.0.3
-    # via pre-commit
+    # via
+    #   huggingface-hub
+    #   pre-commit
+requests==2.34.2
+    # via fastembed
 ruff==0.16.10
     # via ukmoney-rag (pyproject.toml)
 sortedcontainers==2.4.0
@@ -100,11 +144,18 @@ starlette==1.7.0
     # via fastapi
 tenacity==9.1.4
     # via ukmoney-rag (pyproject.toml)
+tokenizers==0.23.2
+    # via fastembed
+tqdm==4.70.1
+    # via
+    #   fastembed
+    #   huggingface-hub
 typing-extensions==4.16.0
     # via
     #   anyio
     #   beautifulsoup4
     #   fastapi
+    #   huggingface-hub
     #   mypy
     #   opentelemetry-api
     #   pydantic
@@ -115,6 +166,8 @@ typing-inspection==0.4.4
     # via
     #   fastapi
     #   pydantic
+urllib3==2.8.0
+    # via requests
 uvicorn==0.54.0
     # via ukmoney-rag (pyproject.toml)
 virtualenv==21.14.2

@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.12"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -27,3 +27,12 @@ jobs:
       - run: ruff format --check .
       - run: mypy
       - run: pytest --cov --cov-report=term-missing --cov-fail-under=85
+
+  docker:
+    # Builds the production image and runs it with --network none: proves the
+    # pinned model + dense index are baked in and the service starts offline.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: make docker-build
+      - run: make docker-smoke

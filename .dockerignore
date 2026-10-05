@@ -1,7 +1,10 @@
 # Only what the image needs goes in the build context.
+# Local model caches and indexes are excluded on purpose: the image builds its own.
 .git
 .github
 .venv
+.cache
+indexes
 **/__pycache__
 .pytest_cache
 .mypy_cache
@@ -11,5 +14,7 @@
 htmlcov
 tests
 docs
-data/raw
+eval
 *.egg-info
+data/*
+!data/snapshot

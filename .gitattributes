@@ -1,1 +1,4 @@
 * text=auto eol=lf
+
+# Frozen corpus: never convert line endings (would change eval/CORPUS_SHA256)
+data/snapshot/** -text

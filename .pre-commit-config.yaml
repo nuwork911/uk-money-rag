@@ -1,3 +1,5 @@
+# Frozen corpus: hooks must never rewrite these bytes (eval/CORPUS_SHA256 pins them).
+exclude: ^data/snapshot/
 # Install once with `make install`; hooks then run on every commit.
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

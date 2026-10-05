@@ -2,7 +2,7 @@ PYTHON ?= python3.12
 VENV ?= .venv
 PY   := $(VENV)/bin/python
 
-.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean
+.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model serve-dense docker-smoke
 
 help:  ## Show targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-12s %s\n", $$1, $$2}'
@@ -41,17 +41,38 @@ check: lint typecheck test  ## Everything CI runs
 ingest:  ## Fetch (cached) + parse + chunk -> data/processed/
 	$(PY) -m ukmoney_rag.ingest --sources configs/sources.toml
 
-serve:  ## Run the API locally on :8080 (needs `make ingest` first)
+serve:  ## Run the API on :8080 over the committed data/snapshot (BM25 only)
 	$(VENV)/bin/ukmoney-serve
+
+serve-dense:  ## Same, plus /search?mode=dense (needs `make index` first)
+	UKMONEY_DENSE=1 $(VENV)/bin/ukmoney-serve
 
 IMAGE ?= ukmoney-rag:local
 
-docker-build:  ## Build the production image (needs `make ingest` first)
+docker-build:  ## Build the production image from data/snapshot (bakes model + dense index)
 	docker build --build-arg GIT_SHA=$$(git rev-parse --short HEAD 2>/dev/null || echo local) -t $(IMAGE) .
 
-docker-run:  ## Run the production image on :8080
+docker-run:  ## Run the production image on :8080 (Ctrl-C to stop)
 	docker run --rm -p 8080:8080 $(IMAGE)
+
+docker-smoke:  ## Offline smoke test (--network none): /health + dense /search
+	./scripts/docker_smoke.sh $(IMAGE)
 
 clean:  ## Remove caches and build artefacts (keeps data/)
 	rm -rf .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov dist build
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
+
+snapshot:  ## Freeze data/processed into the committed snapshot (then review the diff + commit)
+	mkdir -p data/snapshot
+	cp data/processed/chunks.jsonl data/processed/manifest.json data/snapshot/
+	@echo "corpus_sha256=$$(sha256sum data/snapshot/chunks.jsonl | cut -d' ' -f1)"
+
+verify-snapshot:  ## Fail if the snapshot's bytes don't match what the eval set was written against
+	@test "$$(sha256sum data/snapshot/chunks.jsonl | cut -d' ' -f1)" = "$$(cat eval/CORPUS_SHA256)" \
+	  && echo "snapshot OK" || (echo "snapshot != eval/CORPUS_SHA256" && exit 1)
+
+index:  ## Build the dense index from the committed snapshot
+	$(VENV)/bin/ukmoney-build-index --data-dir data/snapshot --out indexes --model-cache .cache/models
+
+test-model:  ## Slow tests that download/run the real embedding model
+	$(PY) -m pytest -q -m model --no-cov

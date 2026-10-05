@@ -1,0 +1,506 @@
+{
+  "created_at": "2026-10-05T09:20:28.353819Z",
+  "chunk_config": {
+    "max_words": 180,
+    "overlap_words": 30
+  },
+  "n_documents": 49,
+  "n_chunks": 803,
+  "words_min": 8,
+  "words_median": 155.0,
+  "words_max": 180,
+  "sources": [
+    {
+      "name": "govuk-universal-credit",
+      "url": "https://www.gov.uk/universal-credit",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:25.955708Z",
+      "from_cache": true,
+      "raw_sha256": "5872b3fbc3e5ab5fea2ca580b879830c3bfe4e8bf4627ebf17335e3151dd2bcf",
+      "n_sections": 10,
+      "n_chunks": 49
+    },
+    {
+      "name": "govuk-pension-credit",
+      "url": "https://www.gov.uk/pension-credit",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:26.294060Z",
+      "from_cache": true,
+      "raw_sha256": "5c42b2191a84ee91bcbcb2c853a5d5e1f7165681c2e39d408c107445a0167842",
+      "n_sections": 5,
+      "n_chunks": 21
+    },
+    {
+      "name": "govuk-pip",
+      "url": "https://www.gov.uk/pip",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:28.169664Z",
+      "from_cache": true,
+      "raw_sha256": "bfab2383f0db48604a0c6f2a1b813ab352761a11e334fb9c814825c452470181",
+      "n_sections": 8,
+      "n_chunks": 30
+    },
+    {
+      "name": "govuk-attendance-allowance",
+      "url": "https://www.gov.uk/attendance-allowance",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:29.424948Z",
+      "from_cache": true,
+      "raw_sha256": "c47f594fa27db58b915d01ec4b5cef4f449c543cef1828d74f2b1330116abb6a",
+      "n_sections": 6,
+      "n_chunks": 18
+    },
+    {
+      "name": "govuk-carers-allowance",
+      "url": "https://www.gov.uk/carers-allowance",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:30.549968Z",
+      "from_cache": true,
+      "raw_sha256": "8a6349f9f612f9fa51e3aadd89f02243e9968a01c928937d6e5e57c6c7f6b6ad",
+      "n_sections": 6,
+      "n_chunks": 19
+    },
+    {
+      "name": "govuk-carers-credit",
+      "url": "https://www.gov.uk/carers-credit",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:31.555739Z",
+      "from_cache": true,
+      "raw_sha256": "c7fa5aaca6785ac2f39a7876185fe311349d7014165b5ffe925976e46621d215",
+      "n_sections": 4,
+      "n_chunks": 6
+    },
+    {
+      "name": "govuk-child-benefit",
+      "url": "https://www.gov.uk/child-benefit",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:32.839819Z",
+      "from_cache": true,
+      "raw_sha256": "e7026826aa307c303fabbfd32f757bc71a2e43a085a2cc3e20014c69e3a9ffd9",
+      "n_sections": 7,
+      "n_chunks": 18
+    },
+    {
+      "name": "govuk-child-benefit-tax-charge",
+      "url": "https://www.gov.uk/child-benefit-tax-charge",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:33.893079Z",
+      "from_cache": true,
+      "raw_sha256": "3cfd317c510de3525829bf7aa60f80616d984a4a0fea5f34d889b46e33c6a732",
+      "n_sections": 6,
+      "n_chunks": 19
+    },
+    {
+      "name": "govuk-jobseekers-allowance",
+      "url": "https://www.gov.uk/jobseekers-allowance",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:34.915096Z",
+      "from_cache": true,
+      "raw_sha256": "29b56d4115fe1cd6c6d378db7541ea3a686c13bd2992be1d04e5eafabf4a794f",
+      "n_sections": 6,
+      "n_chunks": 20
+    },
+    {
+      "name": "govuk-employment-support-allowance",
+      "url": "https://www.gov.uk/employment-support-allowance",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:36.019071Z",
+      "from_cache": true,
+      "raw_sha256": "15bd3812546da0e8b59f7a838976d286a258917949c441e64891e9a498375228",
+      "n_sections": 8,
+      "n_chunks": 27
+    },
+    {
+      "name": "govuk-housing-benefit",
+      "url": "https://www.gov.uk/housing-benefit",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:37.261936Z",
+      "from_cache": true,
+      "raw_sha256": "77c8df076d16337312f2883a9cee3ae8698cfd0d02426669491e3048dbc054fb",
+      "n_sections": 6,
+      "n_chunks": 19
+    },
+    {
+      "name": "govuk-cold-weather-payment",
+      "url": "https://www.gov.uk/cold-weather-payment",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:38.397255Z",
+      "from_cache": true,
+      "raw_sha256": "6b7136c5629dbfbe087418e1043b7bb8640ff0a791b03aff035dfdcc8b64877f",
+      "n_sections": 5,
+      "n_chunks": 7
+    },
+    {
+      "name": "govuk-winter-fuel-payment",
+      "url": "https://www.gov.uk/winter-fuel-payment",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:39.629484Z",
+      "from_cache": true,
+      "raw_sha256": "c7a9686b36e0f114f9aa236b0aab28473c418809f03a75c755ae9de723159490",
+      "n_sections": 8,
+      "n_chunks": 18
+    },
+    {
+      "name": "govuk-budgeting-help-benefits",
+      "url": "https://www.gov.uk/budgeting-help-benefits",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:40.676240Z",
+      "from_cache": true,
+      "raw_sha256": "a2ce426af6e197dccb16c57f9e35a347e1902ce4b16bd2800ef62a45acc56c0c",
+      "n_sections": 7,
+      "n_chunks": 11
+    },
+    {
+      "name": "govuk-sure-start-maternity-grant",
+      "url": "https://www.gov.uk/sure-start-maternity-grant",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:41.663274Z",
+      "from_cache": true,
+      "raw_sha256": "81bc59ac0e2448a4bf86aedf31af78aec925f72bc9bdd2f4e3e885b42b83ef9b",
+      "n_sections": 4,
+      "n_chunks": 10
+    },
+    {
+      "name": "govuk-statutory-sick-pay",
+      "url": "https://www.gov.uk/statutory-sick-pay",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:41.997657Z",
+      "from_cache": true,
+      "raw_sha256": "d160e5b06d29451247b7cc3b87c5b8a03c1775194bc066fb802284650e891e2a",
+      "n_sections": 4,
+      "n_chunks": 6
+    },
+    {
+      "name": "govuk-maternity-pay-leave",
+      "url": "https://www.gov.uk/maternity-pay-leave",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:43.903841Z",
+      "from_cache": true,
+      "raw_sha256": "0cac4cd1054973fce8949636eccd65e26a6d8925b2ea386e406778f442d2ece6",
+      "n_sections": 6,
+      "n_chunks": 10
+    },
+    {
+      "name": "govuk-benefit-cap",
+      "url": "https://www.gov.uk/benefit-cap",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:44.850711Z",
+      "from_cache": true,
+      "raw_sha256": "ae6b0d4a6c5afbce7aeae031444d896a4060fec8d27335223bb6a58d51d3b57f",
+      "n_sections": 5,
+      "n_chunks": 8
+    },
+    {
+      "name": "govuk-tax-free-childcare",
+      "url": "https://www.gov.uk/tax-free-childcare",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:45.857758Z",
+      "from_cache": true,
+      "raw_sha256": "4c3a4c70999644daeb1b85d2c72933e64e56168f042f3469e5800a8bd36614d1",
+      "n_sections": 5,
+      "n_chunks": 18
+    },
+    {
+      "name": "govuk-funeral-payments",
+      "url": "https://www.gov.uk/funeral-payments",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:46.903933Z",
+      "from_cache": true,
+      "raw_sha256": "8446197e68b7b25f68915704065918554d731545a63fac9ad71c611f80fa2c7e",
+      "n_sections": 3,
+      "n_chunks": 6
+    },
+    {
+      "name": "govuk-bereavement-support-payment",
+      "url": "https://www.gov.uk/bereavement-support-payment",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:47.211339Z",
+      "from_cache": true,
+      "raw_sha256": "59cba251604c6c4b60693f2e65c502ebcdd3b8075fe0672759e095ae85311bdb",
+      "n_sections": 4,
+      "n_chunks": 9
+    },
+    {
+      "name": "govuk-disability-living-allowance-children",
+      "url": "https://www.gov.uk/disability-living-allowance-children",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:48.902295Z",
+      "from_cache": true,
+      "raw_sha256": "69840947c434218ade34755d6ca53b6b195a1335e1ec62c26ca5914a2d2f98b2",
+      "n_sections": 7,
+      "n_chunks": 18
+    },
+    {
+      "name": "govuk-support-for-mortgage-interest",
+      "url": "https://www.gov.uk/support-for-mortgage-interest",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:49.214645Z",
+      "from_cache": true,
+      "raw_sha256": "29fd97cc1da89f08d061c5db6f5264de98dff6010da24b7a28942c598e83fb19",
+      "n_sections": 6,
+      "n_chunks": 17
+    },
+    {
+      "name": "govuk-new-state-pension",
+      "url": "https://www.gov.uk/new-state-pension",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:51.039529Z",
+      "from_cache": true,
+      "raw_sha256": "f103eeab56de1c3dbb96840958db5cfd70b5e9d68afd8581190848304318ab57",
+      "n_sections": 7,
+      "n_chunks": 22
+    },
+    {
+      "name": "govuk-deferring-state-pension",
+      "url": "https://www.gov.uk/deferring-state-pension",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:51.359077Z",
+      "from_cache": true,
+      "raw_sha256": "4a7cddca8a08915f12eb0c70da0e4431cc0650be698a7919f0be12a8c22b645d",
+      "n_sections": 6,
+      "n_chunks": 12
+    },
+    {
+      "name": "govuk-voluntary-national-insurance-contributions",
+      "url": "https://www.gov.uk/voluntary-national-insurance-contributions",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:53.055014Z",
+      "from_cache": true,
+      "raw_sha256": "83da2de865ea78c48bfbae7e2ec4a9579d9e361080b21e24ac95cc2701e1b612",
+      "n_sections": 5,
+      "n_chunks": 14
+    },
+    {
+      "name": "govuk-workplace-pensions",
+      "url": "https://www.gov.uk/workplace-pensions",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:53.556883Z",
+      "from_cache": true,
+      "raw_sha256": "460356a204bd71b1bef96cb617c5e404f8b45b97cf46b2d0937b062476174b17",
+      "n_sections": 8,
+      "n_chunks": 23
+    },
+    {
+      "name": "govuk-tax-on-your-private-pension",
+      "url": "https://www.gov.uk/tax-on-your-private-pension",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:54.368274Z",
+      "from_cache": true,
+      "raw_sha256": "edbf5cb038753be6d993e770217f01f240ce3cf5de22425f7cc3a4cfacd64494",
+      "n_sections": 4,
+      "n_chunks": 14
+    },
+    {
+      "name": "govuk-plan-retirement-income",
+      "url": "https://www.gov.uk/plan-retirement-income",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:56.303165Z",
+      "from_cache": true,
+      "raw_sha256": "e68efc77ee0f7d439088f2187189fd412fbd5849891b99073d59822da106f592",
+      "n_sections": 6,
+      "n_chunks": 12
+    },
+    {
+      "name": "govuk-income-tax-rates",
+      "url": "https://www.gov.uk/income-tax-rates",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:57.347920Z",
+      "from_cache": true,
+      "raw_sha256": "e6fc3c984516087c06d91b775e3dc15da24491b0e636858fd5f11cef75668c91",
+      "n_sections": 2,
+      "n_chunks": 4
+    },
+    {
+      "name": "govuk-national-insurance",
+      "url": "https://www.gov.uk/national-insurance",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:58.345350Z",
+      "from_cache": true,
+      "raw_sha256": "d1b7117a37851e458c85cba9eee4d6357e1e42fb7ef7a8d0b30445cad0e4281f",
+      "n_sections": 7,
+      "n_chunks": 12
+    },
+    {
+      "name": "govuk-income-tax",
+      "url": "https://www.gov.uk/income-tax",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:43:59.207011Z",
+      "from_cache": true,
+      "raw_sha256": "91107812ed4b567af8514f3c145f325d440976ca440b27d4b4038aef558dbc61",
+      "n_sections": 5,
+      "n_chunks": 9
+    },
+    {
+      "name": "govuk-tax-codes",
+      "url": "https://www.gov.uk/tax-codes",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:00.477760Z",
+      "from_cache": true,
+      "raw_sha256": "87b124af04efb5095fc63fd1c1a93de74cc014c058e93900b1fb971f315fb66e",
+      "n_sections": 7,
+      "n_chunks": 18
+    },
+    {
+      "name": "govuk-marriage-allowance",
+      "url": "https://www.gov.uk/marriage-allowance",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:00.786048Z",
+      "from_cache": true,
+      "raw_sha256": "2e205b618d370bc8c346c0c02ffcc564fc4cd85b74eba22c41d9e65ff901ff00",
+      "n_sections": 3,
+      "n_chunks": 10
+    },
+    {
+      "name": "govuk-self-assessment-tax-returns",
+      "url": "https://www.gov.uk/self-assessment-tax-returns",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:02.670583Z",
+      "from_cache": true,
+      "raw_sha256": "9243e24082e05c7593b2dc5ef74c5ab66cbe9944051e8effcbb8ae249a6840df",
+      "n_sections": 11,
+      "n_chunks": 29
+    },
+    {
+      "name": "govuk-capital-gains-tax",
+      "url": "https://www.gov.uk/capital-gains-tax",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:03.062020Z",
+      "from_cache": true,
+      "raw_sha256": "c03bc49fafaa0a3c5941931f0500b48cf33e27c398d9c02ccf6fb6f5f23caf09",
+      "n_sections": 10,
+      "n_chunks": 23
+    },
+    {
+      "name": "govuk-inheritance-tax",
+      "url": "https://www.gov.uk/inheritance-tax",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:04.923385Z",
+      "from_cache": true,
+      "raw_sha256": "9493ff5f465a1975316517c00d45f8d6a52cbd336e72cd4422917a550fcf4aaf",
+      "n_sections": 4,
+      "n_chunks": 17
+    },
+    {
+      "name": "govuk-tax-free-interest-on-savings",
+      "url": "https://www.gov.uk/apply-tax-free-interest-on-savings",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:05.249524Z",
+      "from_cache": true,
+      "raw_sha256": "24a37c4ce36a29ec4817112b867b7c21df162dbd3444ed8af16c685fa04d196a",
+      "n_sections": 4,
+      "n_chunks": 11
+    },
+    {
+      "name": "govuk-individual-savings-accounts",
+      "url": "https://www.gov.uk/individual-savings-accounts",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:07.024534Z",
+      "from_cache": true,
+      "raw_sha256": "674c7e554bfa89cdbfd2433d21ce7e7a3140e4232ddda7b52a9f02abe1dfefb4",
+      "n_sections": 8,
+      "n_chunks": 13
+    },
+    {
+      "name": "govuk-tax-on-dividends",
+      "url": "https://www.gov.uk/tax-on-dividends",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:07.332566Z",
+      "from_cache": true,
+      "raw_sha256": "cc7b589f63de0c7e79ab8a886b3c023e6b3b97bf09e2f7c64ef5fc290c93a633",
+      "n_sections": 2,
+      "n_chunks": 5
+    },
+    {
+      "name": "govuk-council-tax",
+      "url": "https://www.gov.uk/council-tax",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:09.046572Z",
+      "from_cache": true,
+      "raw_sha256": "8335cd0ad3ba9b45dc58c736cddb653419a93822c8997364f910a3a7be8ee661",
+      "n_sections": 6,
+      "n_chunks": 17
+    },
+    {
+      "name": "govuk-stamp-duty-land-tax",
+      "url": "https://www.gov.uk/stamp-duty-land-tax",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:10.035229Z",
+      "from_cache": true,
+      "raw_sha256": "40def38bcf5f89c0c2d9708c1139c049bfe28eb35cc43d40566888da9840b13f",
+      "n_sections": 7,
+      "n_chunks": 22
+    },
+    {
+      "name": "govuk-tax-overpayments-and-underpayments",
+      "url": "https://www.gov.uk/tax-overpayments-and-underpayments",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:10.359819Z",
+      "from_cache": true,
+      "raw_sha256": "5d7fdc59dd332fdcd33bc48be274d3603156727dbdcc56b1dfe07ddac90340ce",
+      "n_sections": 3,
+      "n_chunks": 6
+    },
+    {
+      "name": "govuk-tax-relief-for-employees",
+      "url": "https://www.gov.uk/tax-relief-for-employees",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:12.110578Z",
+      "from_cache": true,
+      "raw_sha256": "1fbe8383c30fc794431a12eb91f4ecf5963d71b82cc2bb826c76fb3623a371bf",
+      "n_sections": 7,
+      "n_chunks": 16
+    },
+    {
+      "name": "govuk-rent-room-in-your-home",
+      "url": "https://www.gov.uk/rent-room-in-your-home",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:12.415676Z",
+      "from_cache": true,
+      "raw_sha256": "315e91de7738c4d891ef3b31f25948332bde792eb3d3ea3db373404411063775",
+      "n_sections": 6,
+      "n_chunks": 12
+    },
+    {
+      "name": "govuk-repaying-your-student-loan",
+      "url": "https://www.gov.uk/repaying-your-student-loan",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:13.630483Z",
+      "from_cache": true,
+      "raw_sha256": "5b323eaff715759a687d09a931d26c4f1c411b03c28f7a299aaeadaa984c6923",
+      "n_sections": 9,
+      "n_chunks": 37
+    },
+    {
+      "name": "govuk-options-for-dealing-with-your-debts",
+      "url": "https://www.gov.uk/options-for-dealing-with-your-debts",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:15.060250Z",
+      "from_cache": true,
+      "raw_sha256": "bae9bf2e4eaa4a9d7631143bc1cf3b95d3bab96b49d1bcf1609aee83e08fbef5",
+      "n_sections": 6,
+      "n_chunks": 15
+    },
+    {
+      "name": "govuk-becoming-bankrupt",
+      "url": "https://www.gov.uk/becoming-bankrupt",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:16.336944Z",
+      "from_cache": true,
+      "raw_sha256": "b52a4555c635cdd706c623059c6381915896449221ac7fb0a41b64bf279e2a4c",
+      "n_sections": 12,
+      "n_chunks": 36
+    },
+    {
+      "name": "govuk-county-court-judgments",
+      "url": "https://www.gov.uk/county-court-judgments-ccj-for-debt",
+      "licence": "OGL-v3.0",
+      "fetched_at": "2026-10-05T08:44:16.649435Z",
+      "from_cache": true,
+      "raw_sha256": "eedfe979a2c73dd75104f95fb018ecb61189544c48663c2635dc2eb86df0ef5b",
+      "n_sections": 4,
+      "n_chunks": 10
+    }
+  ],
+  "failures": {},
+  "chunks_sha256": "210e53ba6f7aade4a118e577f03aaaa1e199624e9735ec8db38e3457b25aaf5d"
+}

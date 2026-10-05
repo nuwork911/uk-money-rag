@@ -2,7 +2,7 @@ PYTHON ?= python3.12
 VENV ?= .venv
 PY   := $(VENV)/bin/python
 
-.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model
+.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model serve-dense
 
 help:  ## Show targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-12s %s\n", $$1, $$2}'
@@ -41,8 +41,11 @@ check: lint typecheck test  ## Everything CI runs
 ingest:  ## Fetch (cached) + parse + chunk -> data/processed/
 	$(PY) -m ukmoney_rag.ingest --sources configs/sources.toml
 
-serve:  ## Run the API locally on :8080 (needs `make ingest` first)
+serve:  ## Run the API on :8080 over the committed data/snapshot (BM25 only)
 	$(VENV)/bin/ukmoney-serve
+
+serve-dense:  ## Same, plus /search?mode=dense (needs `make index` first)
+	UKMONEY_DENSE=1 $(VENV)/bin/ukmoney-serve
 
 IMAGE ?= ukmoney-rag:local
 
@@ -55,7 +58,6 @@ docker-run:  ## Run the production image on :8080
 clean:  ## Remove caches and build artefacts (keeps data/)
 	rm -rf .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov dist build
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
-# --- Week 2: add to .PHONY: snapshot verify-snapshot index test-model ---
 
 snapshot:  ## Freeze data/processed into the committed snapshot (then review the diff + commit)
 	mkdir -p data/snapshot

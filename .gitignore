@@ -16,3 +16,6 @@ data/processed/*
 !data/processed/.gitkeep
 indexes/
 .cache/
+
+# This repo pins deps via `uv pip compile` -> requirements*.lock. Do not use `uv run`/`uv lock`.
+uv.lock

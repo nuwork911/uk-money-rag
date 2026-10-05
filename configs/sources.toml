@@ -1,34 +1,67 @@
-# Corpus definition. Adding a page = adding a block here (no code changes).
+# Corpus definition. Adding a page = adding an entry here (no code changes).
 # kind = "govuk_api": fetched via https://www.gov.uk/api/content/<path> (JSON, OGL v3.0)
 # kind = "html":      fetched as HTML, robots.txt respected, parsed generically
 #                     (supported and tested; no HTML sources in the corpus yet)
+#
+# Inclusion rule: GOV.UK `guide` schema only (prose in details.parts[]). Paths verified
+# against the live Content API on 2026-10-05. Excluded: redirects (replaced with their
+# destination), smart_answer / transaction / local_transaction pages (no retrievable prose).
 
-[[source]]
-name = "govuk-new-state-pension"
-kind = "govuk_api"
-url = "https://www.gov.uk/new-state-pension"
-licence = "OGL-v3.0"
+source = [
+  # --- Benefits ---------------------------------------------------------------
+  { name = "govuk-universal-credit", kind = "govuk_api", url = "https://www.gov.uk/universal-credit", licence = "OGL-v3.0" },
+  { name = "govuk-pension-credit", kind = "govuk_api", url = "https://www.gov.uk/pension-credit", licence = "OGL-v3.0" },
+  { name = "govuk-pip", kind = "govuk_api", url = "https://www.gov.uk/pip", licence = "OGL-v3.0" },
+  { name = "govuk-attendance-allowance", kind = "govuk_api", url = "https://www.gov.uk/attendance-allowance", licence = "OGL-v3.0" },
+  { name = "govuk-carers-allowance", kind = "govuk_api", url = "https://www.gov.uk/carers-allowance", licence = "OGL-v3.0" },
+  { name = "govuk-carers-credit", kind = "govuk_api", url = "https://www.gov.uk/carers-credit", licence = "OGL-v3.0" },
+  { name = "govuk-child-benefit", kind = "govuk_api", url = "https://www.gov.uk/child-benefit", licence = "OGL-v3.0" },
+  { name = "govuk-child-benefit-tax-charge", kind = "govuk_api", url = "https://www.gov.uk/child-benefit-tax-charge", licence = "OGL-v3.0" },
+  { name = "govuk-jobseekers-allowance", kind = "govuk_api", url = "https://www.gov.uk/jobseekers-allowance", licence = "OGL-v3.0" },
+  { name = "govuk-employment-support-allowance", kind = "govuk_api", url = "https://www.gov.uk/employment-support-allowance", licence = "OGL-v3.0" },
+  { name = "govuk-housing-benefit", kind = "govuk_api", url = "https://www.gov.uk/housing-benefit", licence = "OGL-v3.0" },
+  { name = "govuk-cold-weather-payment", kind = "govuk_api", url = "https://www.gov.uk/cold-weather-payment", licence = "OGL-v3.0" },
+  { name = "govuk-winter-fuel-payment", kind = "govuk_api", url = "https://www.gov.uk/winter-fuel-payment", licence = "OGL-v3.0" },
+  { name = "govuk-budgeting-help-benefits", kind = "govuk_api", url = "https://www.gov.uk/budgeting-help-benefits", licence = "OGL-v3.0" },
+  { name = "govuk-sure-start-maternity-grant", kind = "govuk_api", url = "https://www.gov.uk/sure-start-maternity-grant", licence = "OGL-v3.0" },
+  { name = "govuk-statutory-sick-pay", kind = "govuk_api", url = "https://www.gov.uk/statutory-sick-pay", licence = "OGL-v3.0" },
+  { name = "govuk-maternity-pay-leave", kind = "govuk_api", url = "https://www.gov.uk/maternity-pay-leave", licence = "OGL-v3.0" },
+  { name = "govuk-benefit-cap", kind = "govuk_api", url = "https://www.gov.uk/benefit-cap", licence = "OGL-v3.0" },
+  { name = "govuk-tax-free-childcare", kind = "govuk_api", url = "https://www.gov.uk/tax-free-childcare", licence = "OGL-v3.0" },
+  { name = "govuk-funeral-payments", kind = "govuk_api", url = "https://www.gov.uk/funeral-payments", licence = "OGL-v3.0" },
+  { name = "govuk-bereavement-support-payment", kind = "govuk_api", url = "https://www.gov.uk/bereavement-support-payment", licence = "OGL-v3.0" },
+  { name = "govuk-disability-living-allowance-children", kind = "govuk_api", url = "https://www.gov.uk/disability-living-allowance-children", licence = "OGL-v3.0" },
+  { name = "govuk-support-for-mortgage-interest", kind = "govuk_api", url = "https://www.gov.uk/support-for-mortgage-interest", licence = "OGL-v3.0" },
 
-[[source]]
-name = "govuk-universal-credit"
-kind = "govuk_api"
-url = "https://www.gov.uk/universal-credit"
-licence = "OGL-v3.0"
+  # --- Pensions ---------------------------------------------------------------
+  { name = "govuk-new-state-pension", kind = "govuk_api", url = "https://www.gov.uk/new-state-pension", licence = "OGL-v3.0" },
+  { name = "govuk-deferring-state-pension", kind = "govuk_api", url = "https://www.gov.uk/deferring-state-pension", licence = "OGL-v3.0" },
+  { name = "govuk-voluntary-national-insurance-contributions", kind = "govuk_api", url = "https://www.gov.uk/voluntary-national-insurance-contributions", licence = "OGL-v3.0" },
+  { name = "govuk-workplace-pensions", kind = "govuk_api", url = "https://www.gov.uk/workplace-pensions", licence = "OGL-v3.0" },
+  { name = "govuk-tax-on-your-private-pension", kind = "govuk_api", url = "https://www.gov.uk/tax-on-your-private-pension", licence = "OGL-v3.0" },
+  { name = "govuk-plan-retirement-income", kind = "govuk_api", url = "https://www.gov.uk/plan-retirement-income", licence = "OGL-v3.0" },
 
-[[source]]
-name = "govuk-pension-credit"
-kind = "govuk_api"
-url = "https://www.gov.uk/pension-credit"
-licence = "OGL-v3.0"
+  # --- Tax --------------------------------------------------------------------
+  { name = "govuk-income-tax-rates", kind = "govuk_api", url = "https://www.gov.uk/income-tax-rates", licence = "OGL-v3.0" },
+  { name = "govuk-national-insurance", kind = "govuk_api", url = "https://www.gov.uk/national-insurance", licence = "OGL-v3.0" },
+  { name = "govuk-income-tax", kind = "govuk_api", url = "https://www.gov.uk/income-tax", licence = "OGL-v3.0" },
+  { name = "govuk-tax-codes", kind = "govuk_api", url = "https://www.gov.uk/tax-codes", licence = "OGL-v3.0" },
+  { name = "govuk-marriage-allowance", kind = "govuk_api", url = "https://www.gov.uk/marriage-allowance", licence = "OGL-v3.0" },
+  { name = "govuk-self-assessment-tax-returns", kind = "govuk_api", url = "https://www.gov.uk/self-assessment-tax-returns", licence = "OGL-v3.0" },
+  { name = "govuk-capital-gains-tax", kind = "govuk_api", url = "https://www.gov.uk/capital-gains-tax", licence = "OGL-v3.0" },
+  { name = "govuk-inheritance-tax", kind = "govuk_api", url = "https://www.gov.uk/inheritance-tax", licence = "OGL-v3.0" },
+  { name = "govuk-tax-free-interest-on-savings", kind = "govuk_api", url = "https://www.gov.uk/apply-tax-free-interest-on-savings", licence = "OGL-v3.0" },
+  { name = "govuk-individual-savings-accounts", kind = "govuk_api", url = "https://www.gov.uk/individual-savings-accounts", licence = "OGL-v3.0" },
+  { name = "govuk-tax-on-dividends", kind = "govuk_api", url = "https://www.gov.uk/tax-on-dividends", licence = "OGL-v3.0" },
+  { name = "govuk-council-tax", kind = "govuk_api", url = "https://www.gov.uk/council-tax", licence = "OGL-v3.0" },
+  { name = "govuk-stamp-duty-land-tax", kind = "govuk_api", url = "https://www.gov.uk/stamp-duty-land-tax", licence = "OGL-v3.0" },
+  { name = "govuk-tax-overpayments-and-underpayments", kind = "govuk_api", url = "https://www.gov.uk/tax-overpayments-and-underpayments", licence = "OGL-v3.0" },
+  { name = "govuk-tax-relief-for-employees", kind = "govuk_api", url = "https://www.gov.uk/tax-relief-for-employees", licence = "OGL-v3.0" },
+  { name = "govuk-rent-room-in-your-home", kind = "govuk_api", url = "https://www.gov.uk/rent-room-in-your-home", licence = "OGL-v3.0" },
+  { name = "govuk-repaying-your-student-loan", kind = "govuk_api", url = "https://www.gov.uk/repaying-your-student-loan", licence = "OGL-v3.0" },
 
-[[source]]
-name = "govuk-income-tax-rates"
-kind = "govuk_api"
-url = "https://www.gov.uk/income-tax-rates"
-licence = "OGL-v3.0"
-
-[[source]]
-name = "govuk-national-insurance"
-kind = "govuk_api"
-url = "https://www.gov.uk/national-insurance"
-licence = "OGL-v3.0"
+  # --- Debt -------------------------------------------------------------------
+  { name = "govuk-options-for-dealing-with-your-debts", kind = "govuk_api", url = "https://www.gov.uk/options-for-dealing-with-your-debts", licence = "OGL-v3.0" },
+  { name = "govuk-becoming-bankrupt", kind = "govuk_api", url = "https://www.gov.uk/becoming-bankrupt", licence = "OGL-v3.0" },
+  { name = "govuk-county-court-judgments", kind = "govuk_api", url = "https://www.gov.uk/county-court-judgments-ccj-for-debt", licence = "OGL-v3.0" },
+]

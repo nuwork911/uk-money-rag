@@ -13,7 +13,7 @@ RUN pip install --require-hashes -r requirements.lock
 FROM deps AS build
 COPY pyproject.toml README.md ./
 COPY src ./src
-RUN pip install --no-deps .
+RUN pip install --no-deps . && pip uninstall -y pip
 
 # ---- index: download the pinned model and build the dense index IN the image
 # The image, not a developer laptop, produces the served index (ADR-0002:

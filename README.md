@@ -22,7 +22,11 @@ government; not financial advice.
 
 ![A /search response: 200 with GOV.UK excerpts and licence metadata](docs/img/search-response.png)
 
-*Screenshots taken 4 October 2026 (BM25-only revision).*
+*Screenshots above taken 4 October 2026 (BM25-only revision).*
+
+![Live /health on the dense revision: commit, corpus hash, retrievers and index ID](docs/img/health-dense.png)
+
+*Taken 5 October 2026 (dense revision `2b53f65`).*
 
 ## Quickstart
 
@@ -104,7 +108,9 @@ Cloud Run (europe-west2), scale-to-zero, max 2 instances, 1 vCPU / 1 GiB, startu
 Deploys are manual (`workflow_dispatch`) and run the full CI first, including the offline image
 smoke test. They authenticate with Workload Identity Federation (no stored keys) and finish by
 asserting that the live `/health` reports the commit just deployed, with dense enabled.
-Performance baseline: [docs/perf/baseline.md](docs/perf/baseline.md).
+Measured server-side ([docs/perf/baseline.md](docs/perf/baseline.md); small samples):
+warm dense search 15–18 ms, warm `/health` 3.5–8.2 ms, cold start 7.15 s (n=1, up from
+3.25 s for BM25-only), image 184.5 MB compressed.
 
 ## Layout
 
@@ -137,6 +143,8 @@ Dockerfile      multi-stage, non-root; bakes snapshot, pinned model and dense in
   was unchanged on the queries compared). See ADR-0002.
 - 24 of 803 chunks are under 40 words (single-sentence section tails). Deliberately
   not tuned by eye; chunk parameters will be chosen against the retrieval eval set (Week 3).
+- Cold start is about 7 s (scale-to-zero plus model load). Accepted for a demo; see
+  `docs/perf/baseline.md`.
 - Word-count chunking, not tokenizer-based.
 - Multi-column/complex tables are flattened to pipe-separated rows.
 - Only GOV.UK `guide` and single-`body` formats are supported; others raise `ParseError`.

@@ -7,6 +7,8 @@
 #   wording:   lexical (shares key terms with the page) | paraphrase (user's own words)
 #   origin:    seed (written by looking at the corpus; may favour BM25) | blind (written first)
 #   known-failure (from eval/known_failures.toml)
+#   compound (blind question with more than one ask; a hit on any ask counts)
+#   seed-paraphrase (blind question asking the same thing as a seed case)
 
 # --- seed cases --------------------------------------------------------------------------------
 

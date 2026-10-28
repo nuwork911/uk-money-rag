@@ -76,3 +76,10 @@ on GOV.UK) is done by hand by the project author.
 
 **Known limitation.** The questions are longer and more detailed than typical user queries
 (LLM style), which may favour dense retrieval over BM25.
+
+**Short variants (`blind_questions_short.md`).** One per blind question, same order, written by
+the project author before labelling, by deleting words only: no new content words beyond a fixed
+list of glue words, first ask only, at most 15 words. Enforced by `tests/test_blind_short.py`, so
+official names cannot leak in during shortening. Short cases use the id suffix `-short`, the tag
+`short`, and the evidence for the first ask of the matching long case. Long/short pairs measure
+retrieval sensitivity to query length.

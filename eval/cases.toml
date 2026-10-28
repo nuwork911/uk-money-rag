@@ -9,6 +9,7 @@
 #   known-failure (from eval/known_failures.toml)
 #   compound (blind question with more than one ask; a hit on any ask counts)
 #   seed-paraphrase (blind question asking the same thing as a seed case)
+#   short (deletion-only short variant of a blind question; id ends -short)
 
 # --- seed cases --------------------------------------------------------------------------------
 

@@ -105,6 +105,28 @@ tags = ["debt", "paraphrase", "seed"]
 url = "https://www.gov.uk/county-court-judgments-ccj-for-debt/cancel-the-judgment"
 quote = "you can ask the court to cancel the county court judgment"
 
-# --- blind cases (yours) -----------------------------------------------------------------------
-# Write the question first, in your own words, before opening the page. Then find the answer
-# on GOV.UK and confirm the quote with: .venv/bin/ukmoney-eval find "<quote>" --url <url>
+# --- blind cases (eval/README.md, 'Blind set') ---------------------------------------------------
+
+[[case]]
+id = "blind-25-tax-free-savings-yearly"
+question = "I have £22,000 sitting in an ordinary current account earning practically nothing; how much can I tuck away each year into a tax-free savings account so the bank interest isn't taxed?"
+tags = ["savings", "paraphrase", "seed-paraphrase", "blind"]
+notes = "Seed paraphrase of isa-annual-limit; same two evidence locations."
+[[case.evidence]]
+url = "https://www.gov.uk/individual-savings-accounts/overview"
+quote = "the maximum you can save in ISAs is £20,000"
+[[case.evidence]]
+url = "https://www.gov.uk/individual-savings-accounts/how-isas-work"
+quote = "you can save up to £20,000 in one account"
+
+[[case]]
+id = "blind-25-tax-free-savings-yearly-short"
+question = "How much can I tuck away each year into a tax-free savings account?"
+tags = ["short"]
+notes = "Short variant of blind-25-tax-free-savings-yearly; evidence = first ask of the long case."
+[[case.evidence]]
+url = "https://www.gov.uk/individual-savings-accounts/overview"
+quote = "the maximum you can save in ISAs is £20,000"
+[[case.evidence]]
+url = "https://www.gov.uk/individual-savings-accounts/how-isas-work"
+quote = "you can save up to £20,000 in one account"

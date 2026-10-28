@@ -2,7 +2,7 @@ PYTHON ?= python3.12
 VENV ?= .venv
 PY   := $(VENV)/bin/python
 
-.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model serve-dense docker-smoke
+.PHONY: help install lock lint format typecheck test test-live check ingest serve docker-build docker-run clean snapshot verify-snapshot index test-model serve-dense docker-smoke eval eval-validate
 
 help:  ## Show targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-12s %s\n", $$1, $$2}'
@@ -76,3 +76,9 @@ index:  ## Build the dense index from the committed snapshot
 
 test-model:  ## Slow tests that download/run the real embedding model
 	$(PY) -m pytest -q -m model --no-cov
+
+eval-validate:  ## Resolve every eval label against the pinned snapshot (fast, offline; CI runs it)
+	$(VENV)/bin/ukmoney-eval validate
+
+eval: verify-snapshot index  ## Score bm25 vs dense on eval/cases.toml -> eval/results/ (commit first)
+	$(VENV)/bin/ukmoney-eval run --retrievers bm25,dense --out eval/results

@@ -34,6 +34,7 @@ dev = [
 ukmoney-ingest = "ukmoney_rag.ingest:main"
 ukmoney-serve = "ukmoney_rag.api:main"
 ukmoney-build-index = "ukmoney_rag.dense:main"
+ukmoney-eval = "ukmoney_rag.evaluation:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ukmoney_rag"]
